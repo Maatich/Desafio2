@@ -39,16 +39,38 @@ export default class ProductManager{
         }
     }
 
-    updateProduct(product){
-        const productUpdate = [];
-
-        for(let i = 0; i< product.length; i++){
-            let nuevoProduct = callBack(product[i])
-            productUpdate.push(nuevoProduct)
+    updateProduct(id, updatedProduct) {
+        try {
+            const data = fs.readFileSync(this.path, 'utf-8');
+            this.products = JSON.parse(data);
+            const index = this.products.findIndex(p => p.id === id);
+            if (index === -1) {
+                console.log(`Error al actualizar, id: ${id} no encontrado`);
+                return;
+            }
+            updatedProduct.id = id;
+            this.products[index] = updatedProduct;
+            fs.writeFileSync(this.path, JSON.stringify(this.products));
+        } catch (err) {
+            console.log("Error al leer o escribir el archivo.");
         }
-        return nuevoProduct;
     }
 
-    deleteProduct
+    deleteProduct(id) {
+        try {
+            const data = fs.readFileSync(this.path, 'utf-8');
+            this.products = JSON.parse(data);
+            const index = this.products.findIndex(p => p.id === id);
+            if (index === -1) {
+                console.log(`Error id: ${id} no encontrado`);
+                return;
+            }
+            this.products.splice(index, 1);
+            fs.writeFileSync(this.path, JSON.stringify(this.products));
+            console.log(`Producto id: ${id} borrado`);
+        } catch (err) {
+            console.log("Error al leer o escribir el archivo.");
+        }
+    }
 
 }

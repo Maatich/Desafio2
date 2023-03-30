@@ -26,9 +26,28 @@ export default class ProductManager{
         }
     }
 
-    getProductById
+    getProductsById(id_product){
+        let product = this.TraerProducto(id_product);
+        if(product == null){
+            return 'Not Found'
+        }
+        let registro = product.cantidad.find(idCantidad => idCantidad === id_product)
+        if(registro == null){
+            return true
+        }else {
+            return false
+        }
+    }
 
-    updateProduct
+    updateProduct(product){
+        const productUpdate = [];
+
+        for(let i = 0; i< product.length; i++){
+            let nuevoProduct = callBack(product[i])
+            productUpdate.push(nuevoProduct)
+        }
+        return nuevoProduct;
+    }
 
     deleteProduct
 

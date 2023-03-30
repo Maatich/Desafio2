@@ -34,5 +34,14 @@
 		"code": "ES1",
 		"stock": 20,
 		"id": 4
+	},
+	{
+		"title": "product",
+		"description": "seguimiento de producto",
+		"price": 5000,
+		"thumbnail": "no disponible",
+		"code": "ES7",
+		"stock": 40,
+		"id": 5
 	}
 ]
